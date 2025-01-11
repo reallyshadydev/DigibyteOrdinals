@@ -8,8 +8,8 @@ var networkMaps = {};
 
 /**
  * A network is merely a map containing values that correspond to version
- * numbers for each litecoin network. Currently only supporting "livenet"
- * (a.k.a. "mainnet") and "testnet".
+ * numbers for each digibyte network. Currently only supporting "livenet"
+ * (a.k.a. "mainnet"), "testnet", and "regtest".
  * @constructor
  */
 function Network() {}
@@ -138,15 +138,20 @@ function addNetwork(data) {
 addNetwork({
   name: 'livenet',
   alias: 'mainnet',
-  pubkeyhash: 0x38,
-  privatekey: 0x9e,
-  scripthash: 0x16,
-  xpubkey: 0x02facafd,
-  xprivkey: 0x02fac398,
-  networkMagic: 0xc0a0f0e0,
-  port: 33874,
+  pubkeyhash: 0x1e,
+  privatekey: 0x80,
+  scripthash: 0x3a,
+  xpubkey: 0x0488b21e,
+  xprivkey: 0x0488ade4,
+  networkMagic: 0xfac3b6da,
+  port: 12024,
   dnsSeeds: [
-    'seeds.pepecoin.org',
+    'seed.digibyte.io',
+    'seed2.digibyte.io',
+    'seed3.digibyte.io',
+    'seed.digibyteprojects.com',
+    'seed.digihash.co',
+    'seed.digiexplorer.info'
   ]
 });
 
@@ -159,11 +164,17 @@ var livenet = get('livenet');
 addNetwork({
   name: 'testnet',
   alias: 'test',
-  pubkeyhash: 0x71,
-  privatekey: 0xf1,
+  pubkeyhash: 0x6f,
+  privatekey: 0xef,
   scripthash: 0xc4,
   xpubkey: 0x043587cf,
-  xprivkey: 0x04358394
+  xprivkey: 0x04358394,
+  networkMagic: 0xfdd2c8f1,
+  port: 12025,
+  dnsSeeds: [
+    'testnet-seed.digibyteprojects.com',
+    'testnet-seed.digibyte.io'
+  ]
 });
 
 /**
@@ -181,6 +192,9 @@ addNetwork({
   scripthash: 0xc4,
   xpubkey: 0x043587cf,
   xprivkey: 0x04358394,
+  networkMagic: 0xdab5bffa,
+  port: 18444,
+  dnsSeeds: []
 });
 
 var regtest = get('regtest');
@@ -189,10 +203,11 @@ var regtest = get('regtest');
 // Add configurable values for testnet/regtest
 
 var TESTNET = {
-  PORT: 44874,
-  NETWORK_MAGIC: BufferUtil.integerAsBuffer(0xfec1dbcc),
+  PORT: 12025,
+  NETWORK_MAGIC: BufferUtil.integerAsBuffer(0xfdd2c8f1),
   DNS_SEEDS: [
-    'seeds-testnet.pepecoin.org'
+    'testnet-seed.digibyteprojects.com',
+    'testnet-seed.digibyte.io'
   ]
 };
 
@@ -204,7 +219,7 @@ for (var key in TESTNET) {
 
 var REGTEST = {
   PORT: 18444,
-  NETWORK_MAGIC: BufferUtil.integerAsBuffer(0xfabfb5da),
+  NETWORK_MAGIC: BufferUtil.integerAsBuffer(0xdab5bffa),
   DNS_SEEDS: []
 };
 
