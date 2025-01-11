@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const dogecore = require("bitcore-lib-pepe");
+const dogecore = require("bitcore-lib-digibyte");
 const axios = require("axios");
 const fs = require("fs");
 const dotenv = require("dotenv");
