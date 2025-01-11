@@ -1,7 +1,7 @@
 {
-  "name": "bitcore-lib-pepe",
+  "name": "bitcore-lib-digibyte",
   "version": "10.0.21",
-  "description": "A pure and powerful JavaScript Pepecoin library.",
+  "description": "A pure and powerful JavaScript digibyte library.",
   "author": "BitPay <dev@bitpay.com>",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "pub": "npm run build && npm publish"
   },
   "keywords": [
-    "pepecoin",
+    "digibyte",
     "bitcoin",
     "transaction",
     "address",
