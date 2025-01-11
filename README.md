@@ -1,45 +1,50 @@
-# Pepinals
 
-A minter and protocol for inscriptions on Pepecoin. 
+
+Certainly! Here's the updated README with the correct token reference as DGB:
+
+```markdown
+# DigibyteOrdinals
+
+A minter and protocol for inscriptions on DigiByte. 
 
 ## ⚠️⚠️⚠️ Important ⚠️⚠️⚠️
 
-Use this wallet for inscribing only! Avoid storing pepinals in pepecoin core.
+Use this wallet for inscribing only! Avoid storing ordinals in DigiByte Core.
 
-Please use a fresh paper wallet to mint to with nothing else in it until proper wallet for pepinals support comes.. 
+Please use a fresh paper wallet to mint to with nothing else in it until proper wallet support for ordinals comes.
 
 This wallet is not meant for storing funds or inscriptions.
 
 ## Prerequisites
 
-To use this, you'll need to setup a Pepecoin node, clone this repo and install Node.js on your computer.
+To use this, you'll need to set up a DigiByte node, clone this repo, and install Node.js on your computer.
 
-### Setup Pepecoin node
+### Setup DigiByte Node
 
-Install Pepecoin Core from the official Pepecoin github: (https://github.com/pepecoinppc/pepecoin/releases)
+Install DigiByte Core from the official DigiByte GitHub: (https://github.com/digibyte/digibyte/releases)
 
 ### ⚠️⚠️⚠️ Important ⚠️⚠️⚠️
 A configuration file needs to be created before you continue with the sync.
 
--Stop your node
+- Stop your node
 
--Create a `pepecoin.conf` file in your Pepecoin data folder.
+- Create a `digibyte.conf` file in your DigiByte data folder.
 
--Copy and paste this to the created file. Set your own username/password. Save it!
+- Copy and paste this to the created file. Set your own username/password. Save it!
 
 ```
-rpcuser=ape
-rpcpassword=zord
-rpcport=22555
+rpcuser=your_username
+rpcpassword=your_password
+rpcport=12024
 server=1
 listen=1
 txindex=1
 rpcallowip=127.0.0.1
 ```
 
--Start your node again
+- Start your node again
 
--Wait for your node to sync with the network.
+- Wait for your node to sync with the network.
 
 ==========
 
@@ -49,35 +54,35 @@ Please head over to (https://nodejs.org/en/download) and follow the installation
 
 ==========
 
+### Setup DigibyteOrdinals
 
-### Setup Pepinals
-
-#### Clone Pepinal minter
+#### Clone DigibyteOrdinals Minter
 On your Terminal, type the following commands:
 ```
 cd
-git clone https://github.com/PepeEnthusiast/Pepinals.git
+git clone https://github.com/reallyshadydev/DigibyteOrdinals.git
 ```
-#### Setup minter
+
+#### Setup Minter
 
 ```
-cd Pepinals
+cd DigibyteOrdinals
 npm install
-cd bitcore-lib-pepe
+cd bitcore-lib-digibyte
 npm install
 cd ..
-``` 
+```
 
-After all dependencies are solved, you can configure the environment:
+After all dependencies are resolved, you can configure the environment:
 
-#### Configure environment
+#### Configure Environment
 
-Create a `.env` file with your node information. Set the same username/password used in `pepecoin.conf`.
+Create a `.env` file with your node information. Set the same username/password used in `digibyte.conf`.
 
 ```
-NODE_RPC_URL=http://127.0.0.1:22555
-NODE_RPC_USER=ape
-NODE_RPC_PASS=zord
+NODE_RPC_URL=http://127.0.0.1:12024
+NODE_RPC_USER=your_username
+NODE_RPC_PASS=your_password
 TESTNET=false
 ```
 
@@ -87,7 +92,7 @@ TESTNET=false
 Before proceeding, please make sure your node is fully synced.
 Have fun!
 
-### Managing wallet balance
+### Managing Wallet Balance
 
 Generate a new `.wallet.json` file:
 
@@ -95,13 +100,13 @@ Generate a new `.wallet.json` file:
 node . wallet new
 ```
 
-Retrieve your private key from `.wallet.json` and import it in Pepecoin Core, this can be done from the GUI or the following command
+Retrieve your private key from `.wallet.json` and import it in DigiByte Core, this can be done from the GUI or the following command
 
 ```
-pepecoin-cli importprivkey <your_private_key> <optional_label> false
+digibyte-cli importprivkey <your_private_key> <optional_label> false
 ```
 
-Then send PEPE to the address displayed. Once sent, sync your wallet:
+Then send DGB to the address displayed. Once sent, sync your wallet:
 
 ```
 node . wallet sync
@@ -121,14 +126,13 @@ node . wallet send <address> <optional amount>
 
 ==========
 
+### Minting Ordinals
 
-### Minting Pepinals
+**Note**: Please use a fresh wallet to mint to with nothing else in it until proper wallet support for ordinals comes. 
 
-**Note**: Please use a fresh wallet to mint to with nothing else in it until proper wallet for pepinals support comes. 
+**Do not mint to DigiByte Core**
 
-**Do not mint to Pepecoin Core**
-
-#### Inscribe a file
+#### Inscribe a File
 From file:
 
 ```
@@ -144,40 +148,40 @@ node . mint <address> <content type> <hex data>
 Examples:
 
 ```
-node . mint PpB1ocks3ozcti7m5a3i2wViSuFAchLm3n pepe.jpeg
+node . mint DgB1ocks3ozcti7m5a3i2wViSuFAchLm3n digibyte.jpeg
 ```
 
 ```
-node . mint PpB1ocks3ozcti7m5a3i2wViSuFAchLm3n "text/plain;charset=utf-8" 52696262697421 
+node . mint DgB1ocks3ozcti7m5a3i2wViSuFAchLm3n "text/plain;charset=utf-8" 52696262697421 
 ```
 
-#### Deploy PRC-20
+#### Deploy DGB-20
 
 ```
-node . prc-20 deploy <address> <ticker> <max token supply> <max allowed mint limit>
-```
-
-Examples: 
-
-```
-node . prc-20 deploy PpB1ocks3ozcti7m5a3i2wViSuFAchLm3n frog 1000 100
-```
-
-#### Mint PRC-20
-
-```
-node . prc-20 mint <address> <ticker> <amount>
+node . dgb-20 deploy <address> <ticker> <max token supply> <max allowed mint limit>
 ```
 
 Examples: 
 
 ```
-node . prc-20 mint PpB1ocks3ozcti7m5a3i2wViSuFAchLm3n frog 100
+node . dgb-20 deploy DgB1ocks3ozcti7m5a3i2wViSuFAchLm3n frog 1000 100
 ```
 
-### Viewing Pepinals
+#### Mint DGB-20
 
-**Note**: There is currently as bug preventing to preview some larger pepinals files. Wait for a fix or a pepinals indexer. 
+```
+node . dgb-20 mint <address> <ticker> <amount>
+```
+
+Examples: 
+
+```
+node . dgb-20 mint DgB1ocks3ozcti7m5a3i2wViSuFAchLm3n frog 100
+```
+
+### Viewing Ordinals
+
+**Note**: There is currently a bug preventing the preview of some larger ordinal files. Wait for a fix or an ordinals indexer. 
 
 Viewing small inscriptions seems to work. Investigating...
 
@@ -195,12 +199,11 @@ http://localhost:3000/tx/4650300f65470c359c070ae6b88ab7945adad68458c33285968ce0b
 
 ==========
 
-
 ### Additional Info
 
 #### Protocol
 
-The pepinals protocol allows any size data to be inscribed onto subwoofers.
+The ordinals protocol allows any size data to be inscribed onto subwoofers.
 
 An inscription is defined as a series of push datas:
 
@@ -212,7 +215,7 @@ OP_0
 "Ribbit!"
 ```
 
-For pepinals, we introduce a couple extensions. First, content may spread across multiple parts:
+For ordinals, we introduce a couple extensions. First, content may spread across multiple parts:
 
 ```
 "ord"
@@ -253,17 +256,16 @@ With the restriction that each inscription part after the first must start with 
 
 This allows indexers to know how much data remains.
 
-
 ### Troubleshooting
 
 #### I'm getting ECONNREFUSED errors when minting
 
-There's a problem with the node connection. Your `pepecoin.conf` file should look something like:
+There's a problem with the node connection. Your `digibyte.conf` file should look something like:
 
 ```
-rpcuser=ape
-rpcpassword=zord
-rpcport=22555
+rpcuser=your_username
+rpcpassword=your_password
+rpcport=12024
 server=1
 listen=1
 txindex=1
@@ -275,14 +277,18 @@ Make sure `port` is not set to the same number as `rpcport`. Also make sure `rpc
 Your `.env file` should look like:
 
 ```
-NODE_RPC_URL=http://127.0.0.1:22555
-NODE_RPC_USER=ape
-NODE_RPC_PASS=zord
+NODE_RPC_URL=http://127.0.0.1:12024
+NODE_RPC_USER=your_username
+NODE_RPC_PASS=your_password
 TESTNET=false
 ```
 
 #### Other issues
 
-Try restarting your Pepecoin node.
+Try restarting your DigiByte node.
 
 If still stuck, ask ChatGPT or search online for other solutions.
+```
+
+This version uses "DGB-20" for the token references and is tailored for DigibyteOrdinals.
+
