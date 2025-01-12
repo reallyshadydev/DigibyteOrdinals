@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const dogecore = require("bitcore-lib-digibyte");
+const dogecore = require("./bitcore-lib-digibyte");
 const axios = require("axios");
 const fs = require("fs");
 const dotenv = require("dotenv");
@@ -42,7 +42,7 @@ async function main() {
     await wallet();
   } else if (cmd == "server") {
     await server();
-  } else if (cmd == "prc-20") {
+  } else if (cmd == "dgb-20") {
     await doge20();
   } else {
     throw new Error(`unknown command: ${cmd}`);
@@ -70,7 +70,7 @@ async function doge20Deploy() {
   const argLimit = process.argv[7];
 
   const doge20Tx = {
-    p: "prc-20",
+    p: "dgb-20",
     op: "deploy",
     tick: `${argTicker.toLowerCase()}`,
     max: `${argMax}`,
@@ -82,7 +82,7 @@ async function doge20Deploy() {
   // encode the doge20Tx as hex string
   const encodedDoge20Tx = Buffer.from(parsedDoge20Tx).toString("hex");
 
-  console.log("Deploying prc-20 token...");
+  console.log("Deploying dgb-20 token...");
   await mint(argAddress, "text/plain;charset=utf-8", encodedDoge20Tx);
 }
 
@@ -93,7 +93,7 @@ async function doge20Transfer(operation = "transfer") {
   const argRepeat = Number(process.argv[7]) || 1;
 
   const doge20Tx = {
-    p: "prc-20",
+    p: "dgb-20",
     op: operation,
     tick: `${argTicker.toLowerCase()}`,
     amt: `${argAmount}`,
@@ -144,7 +144,7 @@ function walletNew() {
 async function walletSync() {
   let wallet = JSON.parse(fs.readFileSync(WALLET_PATH));
 
-  console.log("syncing utxos with local Pepecoin node via RPC");
+  console.log("syncing utxos with local Digibyte node via RPC");
 
   const body = {
     jsonrpc: "1.0",
@@ -168,7 +168,7 @@ async function walletSync() {
       txid: utxo.txid,
       vout: utxo.vout,
       script: utxo.scriptPubKey,
-      satoshis: utxo.amount * 1e8, // Convert from PEPE to Satoshis
+      satoshis: utxo.amount * 1e8, // Convert from DGB to Satoshis
     };
   });
 
@@ -384,7 +384,7 @@ function inscribe(wallet, address, contentType, data) {
 
     let p2shOutput = new Transaction.Output({
       script: p2sh,
-      satoshis: 100000,
+      satoshis: 10000,
     });
 
     let tx = new Transaction();
@@ -422,7 +422,7 @@ function inscribe(wallet, address, contentType, data) {
 
   let tx = new Transaction();
   tx.addInput(p2shInput);
-  tx.to(address, 100000);
+  tx.to(address, 10000);
   fund(wallet, tx);
 
   let signature = Transaction.sighash.sign(tx, privateKey, Signature.SIGHASH_ALL, 0, lastLock);
